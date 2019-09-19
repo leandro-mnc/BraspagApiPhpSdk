@@ -42,6 +42,8 @@ class Payment implements \JsonSerializable
 
     private $proofOfSale;
 
+    private $acquirerTransactionId;
+
     private $authorizationCode;
 
     private $softDescriptor = "";
@@ -142,6 +144,7 @@ class Payment implements \JsonSerializable
         $this->authenticationUrl = isset($data->AuthenticationUrl)? $data->AuthenticationUrl: null;
         $this->tid = isset($data->Tid)? $data->Tid: null;
         $this->proofOfSale = isset($data->ProofOfSale)? $data->ProofOfSale: null;
+        $this->acquirerTransactionId = isset($data->AcquirerTransactionId)? $data->AcquirerTransactionId: null;
         $this->authorizationCode = isset($data->AuthorizationCode)? $data->AuthorizationCode: null;
         $this->softDescriptor = isset($data->SoftDescriptor)? $data->SoftDescriptor: null;
         $this->provider = isset($data->Provider)? $data->Provider: null;
@@ -345,6 +348,24 @@ class Payment implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAcquirerTransactionId()
+    {
+        return $this->acquirerTransactionId;
+    }
+
+    /**
+     * @param mixed $acquirerTransactionId
+     * @return Payment
+     */
+    public function setAcquirerTransactionId($acquirerTransactionId)
+    {
+        $this->acquirerTransactionId = $acquirerTransactionId;
+        return $this;
+    }
+
     public function getAuthorizationCode()
     {
         return $this->authorizationCode;
@@ -488,6 +509,17 @@ class Payment implements \JsonSerializable
         return $this;
     }
 
+    public function getReasonMessage()
+    {
+        return $this->reasonMessage;
+    }
+
+    public function setReasonMessage($reasonMessage)
+    {
+        $this->reasonMessage = $reasonMessage;
+        return $this;
+    }
+
     public function getProviderReturnCode()
     {
         return $this->providerReturnCode;
@@ -501,12 +533,12 @@ class Payment implements \JsonSerializable
 
     public function getProviderReturnMessage()
     {
-        return $this->providerReturnCode;
+        return $this->providerReturnMessage;
     }
 
-    public function setProviderReturnMessage($providerReturnCode)
+    public function setProviderReturnMessage($providerReturnMessage)
     {
-        $this->providerReturnCode = $providerReturnCode;
+        $this->providerReturnMessage = $providerReturnMessage;
         return $this;
     }
 
